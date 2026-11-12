@@ -19,7 +19,7 @@ sourceSets {
         resources {
             val platformDir = if (osName.contains("win")) "windows" else "linux"
             srcDir("src/nativeResources/$platformDir")
-            srcDir(layout.buildDirectory.dir("nativeResources/native_libs"))
+            srcDir(layout.buildDirectory.dir("nativeResources"))
         }
     }
 }
@@ -162,6 +162,8 @@ graalvmNative {
 
         buildArgs.add("-H:IncludeResources=.*skiko.*")
         buildArgs.add("-H:IncludeResources=.*native_libs/.*")
+        buildArgs.add("-H:IncludeResources=.*composeResources/.*")
+        buildArgs.add("-H:IncludeResources=.*\\.(cvr|cvr2)$")
         buildArgs.add("-H:IncludeResources=.*\\.(sha256|sha1|so|dll|dylib)$")
         buildArgs.add("-H:IncludeResources=.*anymc\\.(installerapp|shared)\\.generated\\.resources.*$")
         buildArgs.add("-H:IncludeResources=.*swing.*")

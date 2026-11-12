@@ -9,6 +9,10 @@
   "name":"[Lsun.java2d.loops.GraphicsPrimitive;"
 },
 {
+  "name":"com.sun.security.auth.module.UnixSystem",
+  "fields":[{"name":"gid"}, {"name":"groups"}, {"name":"uid"}, {"name":"username"}]
+},
+{
   "name":"java.awt.AlphaComposite",
   "fields":[{"name":"extraAlpha"}, {"name":"rule"}]
 },
@@ -296,6 +300,10 @@
 },
 {
   "name":"sun.awt.X11.XFramePeer"
+},
+{
+  "name":"sun.awt.X11.XRootWindow",
+  "methods":[{"name":"getXRootWindow","parameterTypes":[] }]
 },
 {
   "name":"sun.awt.X11.XToolkit",

@@ -1,2 +1,11 @@
 [
+  {
+    "interfaces":["io.github.vinceglb.filekit.core.platform.xdg.FileChooserDbusInterface"]
+  },
+  {
+    "interfaces":["org.freedesktop.dbus.interfaces.DBus"]
+  },
+  {
+    "interfaces":["org.freedesktop.dbus.interfaces.Properties"]
+  }
 ]

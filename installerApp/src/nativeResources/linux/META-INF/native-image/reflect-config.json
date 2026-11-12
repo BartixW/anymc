@@ -1,5 +1,11 @@
 [
 {
+  "name":"[B"
+},
+{
+  "name":"[C"
+},
+{
   "name":"[Lio.ktor.network.selector.SelectInterest;"
 },
 {
@@ -30,6 +36,10 @@
 },
 {
   "name":"com.jetbrains.exported.JBRApiSupport"
+},
+{
+  "name":"io.github.vinceglb.filekit.core.platform.xdg.Pair",
+  "allDeclaredFields":true
 },
 {
   "name":"io.ktor.client.HttpClient",
@@ -113,11 +123,20 @@
   "fields":[{"name":"top"}]
 },
 {
+  "name":"java.awt.Image"
+},
+{
   "name":"java.awt.SequencedEvent"
 },
 {
   "name":"java.awt.event.KeyEvent",
   "fields":[{"name":"VK_CONTEXT_MENU"}, {"name":"VK_F10"}]
+},
+{
+  "name":"java.io.InputStream"
+},
+{
+  "name":"java.io.Reader"
 },
 {
   "name":"java.lang.Boolean"
@@ -129,11 +148,33 @@
   "name":"java.lang.Object"
 },
 {
+  "name":"java.lang.String"
+},
+{
   "name":"java.lang.Thread",
   "fields":[{"name":"threadLocalRandomProbe"}]
 },
 {
   "name":"java.net.StandardSocketOptions"
+},
+{
+  "name":"java.nio.ByteBuffer"
+},
+{
+  "name":"java.nio.CharBuffer"
+},
+{
+  "name":"java.rmi.MarshalledObject",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Object"] }, {"name":"get","parameterTypes":[] }]
+},
+{
+  "name":"java.rmi.Remote"
+},
+{
+  "name":"java.security.SecureRandomParameters"
+},
+{
+  "name":"java.util.List"
 },
 {
   "name":"java.util.Map"
@@ -192,6 +233,10 @@
 },
 {
   "name":"kotlin.collections.MutableMap"
+},
+{
+  "name":"kotlin.coroutines.SafeContinuation",
+  "fields":[{"name":"result"}]
 },
 {
   "name":"kotlin.jvm.internal.DefaultConstructorMarker"
@@ -312,6 +357,29 @@
   "name":"kotlinx.io.Source"
 },
 {
+  "name":"org.freedesktop.dbus.connections.base.GlobalHandler",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.freedesktop.dbus.interfaces.DBus$NameAcquired",
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.String","java.lang.String"] }]
+},
+{
+  "name":"org.freedesktop.dbus.interfaces.Introspectable",
+  "allDeclaredClasses":true,
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.freedesktop.dbus.interfaces.Peer",
+  "allDeclaredClasses":true,
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.freedesktop.dbus.interfaces.Properties",
+  "methods":[{"name":"Get","parameterTypes":["java.lang.String","java.lang.String"] }, {"name":"GetAll","parameterTypes":["java.lang.String"] }, {"name":"Set","parameterTypes":["java.lang.String","java.lang.String","java.lang.Object"] }]
+},
+{
   "name":"org.jetbrains.skiko.HardwareLayer",
   "methods":[{"name":"coalesceEvents","parameterTypes":["java.awt.AWTEvent","java.awt.AWTEvent"] }]
 },
@@ -325,6 +393,18 @@
 },
 {
   "name":"sun.java2d.marlin.DMarlinRenderingEngine",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.provider.NativePRNG",
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"<init>","parameterTypes":["java.security.SecureRandomParameters"] }]
+},
+{
+  "name":"sun.security.provider.NativePRNG$NonBlocking",
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"<init>","parameterTypes":["java.security.SecureRandomParameters"] }]
+},
+{
+  "name":"sun.security.provider.SHA",
   "methods":[{"name":"<init>","parameterTypes":[] }]
 }
 ]

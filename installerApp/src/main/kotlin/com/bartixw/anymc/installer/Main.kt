@@ -86,6 +86,7 @@ fun main(args: Array<String>) {
 private fun ensureNativeEnvironmentAndRelaunchIfNeeded(args: Array<String>): Boolean {
     val tempRunDir = File(System.getProperty("java.io.tmpdir"), "anymc_installer_run")
     val libDir = File(tempRunDir, "lib")
+    val serverDir = File(libDir, "server")
     val xawtDir = File(libDir, "xawt")
     val headlessDir = File(libDir, "headless")
     val binDir = File(tempRunDir, "bin")
@@ -93,20 +94,21 @@ private fun ensureNativeEnvironmentAndRelaunchIfNeeded(args: Array<String>): Boo
 
     tempRunDir.mkdirs()
     libDir.mkdirs()
+    serverDir.mkdirs()
     xawtDir.mkdirs()
     headlessDir.mkdirs()
     binDir.mkdirs()
     binServerDir.mkdirs()
 
     // 1. Extract embedded native libraries into /tmp/anymc_installer_run
-    extractEmbeddedNativesTo(tempRunDir, libDir, xawtDir, headlessDir)
+    extractEmbeddedNativesTo(tempRunDir, libDir, serverDir, xawtDir, headlessDir, binDir, binServerDir)
 
     // 2. Set System Properties in BOTH parent and child processes
+    val allLibDirs = listOf(serverDir, xawtDir, headlessDir, libDir, binServerDir, binDir, tempRunDir)
+    val libraryPathStr = allLibDirs.joinToString(File.pathSeparator) { it.absolutePath }
+
     System.setProperty("java.home", tempRunDir.absolutePath)
-    System.setProperty(
-        "java.library.path",
-        "${binDir.absolutePath}${File.pathSeparator}${binServerDir.absolutePath}${File.pathSeparator}${libDir.absolutePath}${File.pathSeparator}${tempRunDir.absolutePath}"
-    )
+    System.setProperty("java.library.path", libraryPathStr)
     System.setProperty("org.lwjgl.librarypath", tempRunDir.absolutePath)
 
     val isLoaded = System.getenv("ANYMC_NATIVE_LOADED") == "1"
@@ -154,11 +156,13 @@ private fun ensureNativeEnvironmentAndRelaunchIfNeeded(args: Array<String>): Boo
 
         if (os.contains("win")) {
             val pathKey = env.keys.firstOrNull { it.equals("PATH", ignoreCase = true) } ?: "PATH"
-            env[pathKey] = "${binDir.absolutePath};${binServerDir.absolutePath};${libDir.absolutePath};${tempRunDir.absolutePath};" + (env[pathKey] ?: "")
+            val winPathsStr = allLibDirs.joinToString(";") { it.absolutePath }
+            env[pathKey] = "$winPathsStr;" + (env[pathKey] ?: "")
         } else {
             val ldKey = "LD_LIBRARY_PATH"
             val existingLd = env[ldKey] ?: ""
-            env[ldKey] = "${libDir.absolutePath}:${xawtDir.absolutePath}:${headlessDir.absolutePath}:${tempRunDir.absolutePath}:$existingLd"
+            val linuxPathsStr = allLibDirs.joinToString(":") { it.absolutePath }
+            env[ldKey] = "$linuxPathsStr:$existingLd"
         }
 
         println("Main: Self-extracting native payload to ${tempRunDir.absolutePath} and executing...")
@@ -173,11 +177,16 @@ private fun ensureNativeEnvironmentAndRelaunchIfNeeded(args: Array<String>): Boo
     }
 }
 
-private fun extractEmbeddedNativesTo(tempDir: File, libDir: File, xawtDir: File, headlessDir: File) {
+private fun extractEmbeddedNativesTo(
+    tempDir: File,
+    libDir: File,
+    serverDir: File,
+    xawtDir: File,
+    headlessDir: File,
+    binDir: File,
+    binServerDir: File
+) {
     try {
-        val serverDir = File(libDir, "server")
-        serverDir.mkdirs()
-
         val os = PlatformUtils.getCurrentOS().lowercase()
         val ext = when {
             os.contains("win") -> ".dll"
@@ -199,8 +208,7 @@ private fun extractEmbeddedNativesTo(tempDir: File, libDir: File, xawtDir: File,
                 "native_libs/lib/xawt/$baseName",
                 "native_libs/lib/headless/$baseName",
                 "native_libs/bin/$baseName",
-                "native_libs/bin/server/$baseName",
-                baseName
+                "native_libs/bin/server/$baseName"
             )
 
             for (resName in targetPaths) {
@@ -208,42 +216,36 @@ private fun extractEmbeddedNativesTo(tempDir: File, libDir: File, xawtDir: File,
                     val stream = classLoader.getResourceAsStream(resName)
                         ?: ClassLoader.getSystemResourceAsStream(resName)
 
-                    stream?.use { input ->
-                        val subPath = resName.removePrefix("native_libs/")
-                        val targetFile = File(tempDir, subPath)
-                        targetFile.parentFile?.mkdirs()
-                        if (!targetFile.exists() || targetFile.length() == 0L) {
-                            targetFile.outputStream().use { output ->
-                                input.copyTo(output)
+                    if (stream != null) {
+                        stream.use { input ->
+                            val subPath = resName.removePrefix("native_libs/")
+                            val targetFile = File(tempDir, subPath)
+                            targetFile.parentFile?.mkdirs()
+                            if (!targetFile.exists() || targetFile.length() == 0L) {
+                                targetFile.outputStream().use { output ->
+                                    input.copyTo(output)
+                                }
+                                println("Main: Extracted native resource: $resName -> ${targetFile.absolutePath} (${targetFile.length()} bytes)")
                             }
-                            println("Main: Extracted native resource: $resName -> ${targetFile.absolutePath}")
                         }
                     }
-                } catch (_: Exception) {}
+                } catch (e: Exception) {
+                    println("Main: Failed extracting $resName: ${e.message}")
+                }
             }
         }
 
-        val jvmFile = File(tempDir, if (os.contains("win")) "jvm.dll" else "libjvm.so")
-        if (jvmFile.exists()) {
-            jvmFile.copyTo(File(serverDir, jvmFile.name), overwrite = true)
-            jvmFile.copyTo(File(libDir, jvmFile.name), overwrite = true)
-        }
-
-        val awtFile = File(tempDir, if (os.contains("win")) "awt.dll" else "libawt.so")
-        if (awtFile.exists()) {
-            awtFile.copyTo(File(libDir, awtFile.name), overwrite = true)
-        }
-
-        val xawtFile = File(tempDir, "libawt_xawt.so")
-        if (xawtFile.exists()) {
-            xawtFile.copyTo(File(xawtDir, "libawt_xawt.so"), overwrite = true)
-            xawtFile.copyTo(File(libDir, "libawt_xawt.so"), overwrite = true)
-        }
-
-        val headlessFile = File(tempDir, "libawt_headless.so")
-        if (headlessFile.exists()) {
-            headlessFile.copyTo(File(headlessDir, "libawt_headless.so"), overwrite = true)
-            headlessFile.copyTo(File(libDir, "libawt_headless.so"), overwrite = true)
+        // Copy critical shared libraries across all lib subdirectories so dyld/ld.so finds them regardless of directory
+        val copyDirs = listOf(tempDir, libDir, serverDir, xawtDir, headlessDir, binDir, binServerDir)
+        for (f in (tempDir.listFiles() ?: emptyArray()) + (libDir.listFiles() ?: emptyArray())) {
+            if (f.isFile && (f.name.endsWith(".so") || f.name.endsWith(".dll") || f.name.endsWith(".dylib"))) {
+                for (destDir in copyDirs) {
+                    val dest = File(destDir, f.name)
+                    if (!dest.exists()) {
+                        try { f.copyTo(dest, overwrite = true) } catch (_: Exception) {}
+                    }
+                }
+            }
         }
 
         // Explicitly pre-load extracted native libraries via absolute path System.load()
@@ -257,14 +259,14 @@ private fun extractEmbeddedNativesTo(tempDir: File, libDir: File, xawtDir: File,
             val fileName = "$libPrefix$name$ext"
             val candidates = listOf(
                 File(serverDir, fileName),
+                File(libDir, fileName),
+                File(tempDir, fileName),
                 File(xawtDir, fileName),
                 File(headlessDir, fileName),
-                File(libDir, fileName),
-                File(tempDir, "bin/server/$fileName"),
-                File(tempDir, "bin/$fileName"),
-                File(tempDir, fileName)
+                File(binServerDir, fileName),
+                File(binDir, fileName)
             )
-            val fileToLoad = candidates.firstOrNull { it.exists() }
+            val fileToLoad = candidates.firstOrNull { it.exists() && it.length() > 0L }
             if (fileToLoad != null) {
                 try {
                     System.load(fileToLoad.absolutePath)
