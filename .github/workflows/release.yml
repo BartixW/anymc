@@ -57,7 +57,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build Launcher (jpackage app-image) and Installer (GraalVM Native Image)
-        run: ./gradlew :desktopApp:createDistributable :installerApp:nativeCompile --no-daemon
+        run: ./gradlew :desktopApp:createDistributable :installerApp:nativeCompile --no-daemon --no-configuration-cache
 
       - name: Prepare Windows Packages
         if: matrix.platform == 'windows'
