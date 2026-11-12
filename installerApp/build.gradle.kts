@@ -173,6 +173,8 @@ graalvmNative {
 
         when {
             osName.contains("win") -> {
+                buildArgs.add("-H:NativeLinkerOption=/SUBSYSTEM:WINDOWS")
+                buildArgs.add("-H:NativeLinkerOption=/ENTRY:mainCRTStartup")
                 buildArgs.add("-H:NativeLinkerOption=/LIBPATH:$javaHome/lib")
                 buildArgs.add("-H:NativeLinkerOption=jawt.lib")
                 buildArgs.add("-H:NativeLinkerOption=jvm.lib")
