@@ -203,17 +203,40 @@ class InstallationManager(
     private fun extractZip(zipFile: File, targetDir: File) {
         ZipInputStream(FileInputStream(zipFile)).use { zipIn ->
             var entry = zipIn.nextEntry
+            val targetCanonical = targetDir.canonicalPath
             while (entry != null) {
-                val newFile = File(targetDir, entry.name)
-                if (entry.isDirectory) {
-                    newFile.mkdirs()
-                } else {
-                    newFile.parentFile?.mkdirs()
-                    FileOutputStream(newFile).use { out ->
-                        zipIn.copyTo(out)
-                    }
-                    if (!PlatformUtils.getCurrentOS().contains("win") && (newFile.name.endsWith(".sh") || !newFile.name.contains("."))) {
-                        newFile.setExecutable(true)
+                val normalizedName = entry.name.replace('\\', '/')
+                val newFile = File(targetDir, normalizedName)
+
+                // Prevent Zip Slip
+                if (newFile.canonicalPath.startsWith(targetCanonical)) {
+                    val isDirectory = entry.isDirectory || normalizedName.endsWith("/")
+
+                    if (isDirectory) {
+                        if (newFile.exists() && !newFile.isDirectory) {
+                            newFile.delete()
+                        }
+                        newFile.mkdirs()
+                    } else {
+                        val parent = newFile.parentFile
+                        if (parent != null) {
+                            if (parent.exists() && !parent.isDirectory) {
+                                parent.delete()
+                            }
+                            parent.mkdirs()
+                        }
+
+                        if (newFile.exists() && newFile.isDirectory) {
+                            newFile.deleteRecursively()
+                        }
+
+                        FileOutputStream(newFile).use { out ->
+                            zipIn.copyTo(out)
+                        }
+
+                        if (!PlatformUtils.getCurrentOS().contains("win") && (newFile.name.endsWith(".sh") || !newFile.name.contains("."))) {
+                            newFile.setExecutable(true)
+                        }
                     }
                 }
                 zipIn.closeEntry()
