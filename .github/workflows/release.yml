@@ -1,0 +1,130 @@
+name: Build and Release AnyMC
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            platform: windows
+            launcher_archive: AnyMC-windows-x64.zip
+            installer_file: AnyMC-Installer.exe
+          - os: ubuntu-latest
+            platform: linux
+            launcher_archive: AnyMC-linux-x64.tar.gz
+            installer_file: AnyMC-Installer-linux
+#          - os: macos-latest
+#            platform: macos
+#            launcher_archive: AnyMC-macos-x64.zip
+#            installer_file: AnyMC-Installer-macos
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up GraalVM (Java 21)
+        uses: graalvm/setup-graalvm@v1
+        with:
+          java-version: '21'
+          distribution: 'graalvm'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          native-image-job-reports: 'true'
+
+      - name: Set up .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            8.0.x
+            10.0.x
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v3
+
+      - name: Grant execute permission for gradlew
+        if: runner.os != 'Windows'
+        run: chmod +x gradlew
+
+      - name: Build Launcher (jpackage app-image) and Installer (GraalVM Native Image)
+        run: ./gradlew :desktopApp:createDistributable :installerApp:nativeCompile --no-daemon
+
+      - name: Prepare Windows Packages
+        if: matrix.platform == 'windows'
+        shell: powershell
+        run: |
+          New-Item -ItemType Directory -Force -Path "dist"
+          
+          # 1. Package Launcher App Image (from jpackage output)
+          $launcherAppDir = Get-ChildItem -Path "desktopApp/build/compose/binaries/main/app" | Select-Object -First 1
+          Compress-Archive -Path "$($launcherAppDir.FullName)/*" -DestinationPath "dist/${{ matrix.launcher_archive }}"
+          
+          # 2. Copy Single Native Installer Executable
+          Copy-Item "installerApp/build/native/nativeCompile/AnyMC-Installer.exe" "dist/${{ matrix.installer_file }}"
+
+      - name: Prepare Linux Packages
+        if: matrix.platform == 'linux'
+        run: |
+          mkdir -p dist
+          
+          # 1. Package Launcher App Image
+          LAUNCHER_DIR=$(ls -d desktopApp/build/compose/binaries/main/app/* | head -n 1)
+          tar -czf "dist/${{ matrix.launcher_archive }}" -C "$LAUNCHER_DIR" .
+          
+          # 2. Copy Single Native Installer Executable
+          cp "installerApp/build/native/nativeCompile/AnyMC-Installer" "dist/${{ matrix.installer_file }}"
+          chmod +x "dist/${{ matrix.installer_file }}"
+
+      - name: Prepare macOS Packages
+        if: matrix.platform == 'macos'
+        run: |
+          mkdir -p dist
+          
+          # 1. Package Launcher App Image (.app bundle)
+          LAUNCHER_DIR=$(ls -d desktopApp/build/compose/binaries/main/app/* | head -n 1)
+          cd "$LAUNCHER_DIR" && zip -r "../../../../../../dist/${{ matrix.launcher_archive }}" . && cd -
+          
+          # 2. Copy Single Native Installer Executable
+          cp "installerApp/build/native/nativeCompile/AnyMC-Installer" "dist/${{ matrix.installer_file }}"
+          chmod +x "dist/${{ matrix.installer_file }}"
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: artifacts-${{ matrix.platform }}
+          path: dist/*
+
+  release:
+    name: Publish GitHub Release
+    needs: build
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: release-assets
+          merge-multiple: true
+
+      - name: Display release assets
+        run: ls -la release-assets
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release-assets/*
+          generate_release_notes: true
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

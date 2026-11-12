@@ -1,0 +1,149 @@
+{
+  "reflection": [
+    {
+      "type": "sun.security.provider.SHA",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "sun.util.resources.cldr.CalendarData"
+    }
+  ],
+  "resources": [
+    {
+      "glob": "META-INF/MANIFEST.MF"
+    },
+    {
+      "glob": "META-INF/services/io.ktor.serialization.kotlinx.KotlinxSerializationExtensionProvider"
+    },
+    {
+      "glob": "META-INF/services/java.awt.im.spi.InputMethodDescriptor"
+    },
+    {
+      "glob": "META-INF/services/java.net.spi.InetAddressResolverProvider"
+    },
+    {
+      "glob": "META-INF/services/java.nio.channels.spi.SelectorProvider"
+    },
+    {
+      "glob": "META-INF/services/kotlin.reflect.jvm.internal.impl.km.internal.extensions.MetadataExtensions"
+    },
+    {
+      "glob": "META-INF/services/kotlin.reflect.jvm.internal.impl.resolve.ExternalOverridabilityCondition"
+    },
+    {
+      "glob": "META-INF/services/kotlin.reflect.jvm.internal.impl.util.ModuleVisibilityHelper"
+    },
+    {
+      "glob": "META-INF/services/kotlinx.coroutines.internal.MainDispatcherFactory"
+    },
+    {
+      "glob": "META-INF/services/org.slf4j.spi.SLF4JServiceProvider"
+    },
+    {
+      "glob": "composeResources/anymc.shared.generated.resources/drawable/app_icon.png"
+    },
+    {
+      "glob": "composeResources/anymc.shared.generated.resources/drawable/ic_chevron_down.png"
+    },
+    {
+      "glob": "composeResources/anymc.shared.generated.resources/drawable/ic_close.png"
+    },
+    {
+      "glob": "composeResources/anymc.shared.generated.resources/drawable/ic_loading_1.png"
+    },
+    {
+      "glob": "composeResources/anymc.shared.generated.resources/drawable/ic_minimize.png"
+    },
+    {
+      "glob": "composeResources/anymc.shared.generated.resources/font/AnyMCFont.ttf"
+    },
+    {
+      "glob": "composeResources/anymc.shared.generated.resources/font/F77_Minecraft.ttf"
+    },
+    {
+      "glob": "composeResources/anymc.shared.generated.resources/values-pl/strings.commonMain.cvr"
+    },
+    {
+      "glob": "kotlin/collections/collections.kotlin_builtins"
+    },
+    {
+      "glob": "kotlin/kotlin.kotlin_builtins"
+    },
+    {
+      "glob": "org/lwjgl/Version.class"
+    },
+    {
+      "glob": "org/slf4j/impl/StaticLoggerBinder.class"
+    },
+    {
+      "module": "java.desktop",
+      "glob": "com/sun/swing/internal/plaf/basic/resources/basic_pl.properties"
+    },
+    {
+      "module": "java.desktop",
+      "glob": "com/sun/swing/internal/plaf/basic/resources/basic_pl_PL.properties"
+    },
+    {
+      "module": "java.desktop",
+      "glob": "com/sun/swing/internal/plaf/metal/resources/metal_pl.properties"
+    },
+    {
+      "module": "java.desktop",
+      "glob": "com/sun/swing/internal/plaf/metal/resources/metal_pl_PL.properties"
+    },
+    {
+      "module": "java.desktop",
+      "glob": "javax/swing/plaf/metal/icons/ocean/computer.gif"
+    },
+    {
+      "module": "java.desktop",
+      "glob": "javax/swing/plaf/metal/icons/ocean/directory.gif"
+    },
+    {
+      "module": "java.desktop",
+      "glob": "javax/swing/plaf/metal/icons/ocean/file.gif"
+    },
+    {
+      "module": "java.desktop",
+      "glob": "javax/swing/plaf/metal/icons/ocean/floppy.gif"
+    },
+    {
+      "module": "java.desktop",
+      "glob": "javax/swing/plaf/metal/icons/ocean/hardDrive.gif"
+    },
+    {
+      "module": "java.desktop",
+      "glob": "javax/swing/plaf/metal/icons/ocean/homeFolder.gif"
+    },
+    {
+      "module": "java.desktop",
+      "glob": "javax/swing/plaf/metal/icons/ocean/newFolder.gif"
+    },
+    {
+      "module": "java.desktop",
+      "glob": "javax/swing/plaf/metal/icons/ocean/upFolder.gif"
+    },
+    {
+      "module": "java.desktop",
+      "glob": "sun/awt/resources/awt_pl.properties"
+    },
+    {
+      "module": "java.desktop",
+      "glob": "sun/awt/resources/awt_pl_PL.properties"
+    },
+    {
+      "bundle": "com.sun.swing.internal.plaf.basic.resources.basic"
+    },
+    {
+      "bundle": "com.sun.swing.internal.plaf.metal.resources.metal"
+    },
+    {
+      "bundle": "sun.awt.resources.awt"
+    }
+  ]
+}

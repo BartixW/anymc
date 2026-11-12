@@ -1,0 +1,79 @@
+package com.bartixw.anymc.controllers
+
+import androidx.compose.runtime.*
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
+import com.russhwolf.settings.Settings
+import com.russhwolf.settings.set
+import kotlinx.serialization.json.Json
+import kotlin.properties.ReadWriteProperty
+import kotlin.reflect.KProperty
+
+class SettingsController(private val settings: Settings, isSystemDarkMode: Boolean) {
+
+    private val json = Json { ignoreUnknownKeys = true }
+
+    /**
+     * Define settings here in a single line. 
+     * They will automatically update the UI and save to persistent storage.
+     */
+    var theme by stringSetting("theme", "default")
+    var maxRamUsage by stringSetting("max_ram_usage", "2048")
+    
+    // Example of how easy it is to add a new setting:
+    // var username by stringSetting("username", "Player")
+
+    // --- Private Helpers ---
+
+    private fun booleanSetting(key: String, defaultValue: Boolean) =
+        setting(key, defaultValue, { k, d -> settings.getBoolean(k, d) }, { k, v -> settings[k] = v })
+
+    private fun intSetting(key: String, defaultValue: Int) =
+        setting(key, defaultValue, { k, d -> settings.getInt(k, d) }, { k, v -> settings[k] = v })
+
+    private fun colorSetting(key: String, defaultValue: Color) =
+        setting(
+            key, 
+            defaultValue, 
+            { k, d -> Color(settings.getInt(k, d.toArgb())) }, 
+            { k, v -> settings[k] = v.toArgb() }
+        )
+
+    private fun stringSetting(key: String, defaultValue: String) =
+        setting(key, defaultValue, { k, d -> settings.getString(k, d) }, { k, v -> settings[k] = v })
+
+    private inline fun <reified T> serializedSetting(key: String, defaultValue: T) =
+        setting(
+            key,
+            defaultValue,
+            { k, d -> 
+                val jsonString = settings.getString(k, "")
+                if (jsonString.isEmpty()) d else json.decodeFromString(jsonString)
+            },
+            { k, v -> settings[k] = json.encodeToString(v) }
+        )
+
+    private fun <T> setting(
+        key: String,
+        defaultValue: T,
+        load: (String, T) -> T,
+        save: (String, T) -> Unit
+    ) = object : ReadWriteProperty<Any?, T> {
+        private val state = mutableStateOf(load(key, defaultValue))
+
+        override fun getValue(thisRef: Any?, property: KProperty<*>): T = state.value
+
+        override fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
+            state.value = value
+            save(key, value)
+        }
+    }
+
+    fun wipe() {
+        settings.clear()
+    }
+}
+
+val LocalSettingsController = staticCompositionLocalOf<SettingsController> {
+    error("No SettingsController provided")
+}

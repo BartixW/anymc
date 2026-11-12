@@ -1,0 +1,489 @@
+<resources>
+    <string name="app_name">Launcher AnyMC</string>
+    <string name="notice">NIE JEST OFICJALNYM PRODUKTEM MINECRAFT. NIEZATWIERDZONE PRZEZ MOJANG ANI MICROSOFT ANI NIEZWIĄZANE Z NIMI</string>
+    <string name="welcome_title">Witamy w launcherze AnyMC!</string>
+    <string name="welcome_description">Dziękujemy za wybór AnyMC jako swojego launchera Minecraft. Oto jego główne funkcje:</string>
+    <string name="welcome_feature_mods_title">Menedżer modyfikacji</string>
+    <string name="welcome_feature_mods_description">Łatwo instaluj, zarządzaj i usuwaj modyfikacje bezpośrednio w launcherze z Modrintha</string>
+    <string name="welcome_feature_multiaccount_title">Wiele kont</string>
+    <string name="welcome_feature_multiaccount_description">Używaj wielu kont różnego rodzaju. Konta Microsoft, Ely.by i offline są wspierane.</string>
+    <string name="welcome_actions_title">Zróbmy kilka rzeczy na początek!</string>
+    <string name="welcome_actions_addaccount_title">Dodaj konto</string>
+    <string name="welcome_actions_createinstallation">Stwórz swoją pierwszą instalację</string>
+    <string name="welcomev2_title">Witamy w AnyMC!</string>
+    <string name="welcomev2_call_to_action_button">Zaczynajmy!</string>
+    <string name="welcomev2_filesystem_loading">Proszę czekać...\nNie powinno to zająć więcej niż kilka sekund.</string>
+    <string name="welcomev2_installing_text">Instaluję Minecrafta...\nStatus: %1$s</string>
+    <string name="welcomev2_installing_button">Idź do ekranu głównego</string>
+
+    <!-- Main Screen -->
+    <string name="main_error_installation_title">Błąd instalacji</string>
+    <string name="main_error_crash_title">Gra zakończyła się błędem!</string>
+    <string name="main_error_crash_copy">Kopiuj błąd</string>
+    <string name="main_error_crash_copied">Skopiowano!</string>
+    <string name="main_error_no_logs">Nie udało się wczytać logów.</string>
+    <string name="main_console_title">Konsola</string>
+    <string name="main_console_close">Zamknij</string>
+    <string name="main_console_no_logs">Nie ma logów</string>
+    <string name="main_welcome_user">Cześć, %1$s!</string>
+    <string name="main_welcome_default">Graczu</string>
+    <string name="main_quickplay_join">Dołącz do ostatniej gry %1$s</string>
+    <string name="main_quickplay_singleplayer">jednoosobowej</string>
+    <string name="main_quickplay_multiplayer">wieloosobowej</string>
+    <string name="main_quickplay_realms">Realms</string>
+    <string name="main_quickplay_info">Nazwa: %1$s\nTryb gry: %2$s\nOstatnio grano: %3$s</string>
+    <string name="main_gamemode_survival">Przetrwanie</string>
+    <string name="main_gamemode_creative">Kreatywny</string>
+    <string name="main_gamemode_adventure">Przygodowy</string>
+    <string name="main_gamemode_spectator">Widz</string>
+    <string name="main_last_game_logs">Logi ostatniej gry</string>
+    <string name="main_nav_profile">Profil</string>
+    <string name="main_nav_versions">Wersje</string>
+    <string name="main_status_launching">Uruchamianie...</string>
+    <string name="main_status_launched">Wymuś zamknięcie</string>
+    <string name="main_status_killing">Zamykanie...</string>
+    <string name="main_status_ready">Uruchom</string>
+    <string name="main_sidebar_screenshots">Zrzuty ekranu</string>
+
+    <!-- Main v2 screen -->
+    <string name="mainv2_home_screen">Ekran główny</string>
+
+    <!-- Status types -->
+    <string name="status_info_fetch">Pobieranie informacji...</string>
+    <string name="status_info_write">Zapisywanie informacji...</string>
+    <string name="status_client_dl">Pobieranie klienta...</string>
+    <string name="status_library_dl">Pobieranie bibliotek... %1$s/%2$s (%3$s)</string>
+    <string name="status_asset_fetch">Wczytywanie listy zasobów...</string>
+    <string name="status_asset_dl">Pobieranie zasobów... %1$s/%2$s (%3$s)</string>
+    <string name="status_java_fetch">Pobieranie informacji o Javie...</string>
+    <string name="status_java_install">Pobieranie Javy... %1$s/%2$s (%3$s)</string>
+    <string name="status_modpack_dl">Pobieranie paczki modów...</string>
+    <string name="status_extract">Wypakowywanie...</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Ustawienia</string>
+    <string name="settings_section_appearance_title">Wygląd</string>
+    <string name="settings_section_appearance_theme_title">Aktualny motyw</string>
+    <string name="settings_section_appearance_theme_desc">Wybierz motyw aplikacji.\n\nMotywy znajdują się pod ścieżką:\n%1$s</string>
+    <string name="settings_section_appearance_language_title">Język</string>
+    <string name="settings_section_appearance_language_auto">Systemowy (Auto)</string>
+    <string name="settings_section_appearance_language_pl">Polski</string>
+    <string name="settings_section_appearance_language_en">Angielski (English)</string>
+    <string name="settings_section_java_title">Java i wydajność</string>
+    <string name="settings_section_java_desc">Skonfiguruj parametry Javy, uruchamiania gry i podobne.</string>
+    <string name="settings_section_advanced_title">Zaawansowane</string>
+    <string name="settings_section_advanced_desc">Zaawansowane opcje launchera, tryb dewelopera</string>
+    <string name="settings_section_about_title">O</string>
+    <string name="settings_section_about_desc">Informacje o launcherze, licencje itp.</string>
+    <string name="settings_section_servers_title">Serwery</string>
+    <string name="settings_section_servers_desc">Połącz instancje AnyMC Servers z launcherem.\n\nNiektóre ustawienia mogą być użyte do grania razem przez internet</string>
+
+    <!-- About Section -->
+    <string name="settings_about_launcher_desc">AnyMC Launcher — Wersja 1.0.0\nStworzone przez BartixW</string>
+    <string name="settings_about_check_updates">Sprawdź aktualizacje</string>
+    <string name="settings_about_licenses">Licencje open-source</string>
+    <string name="settings_about_credits">Atrybucje</string>
+    <string name="settings_about_credits_title">Atrybucje</string>
+
+    <!-- Sync section -->
+    <string name="settings_sync_title">Synchronizacja</string>
+    <string name="settings_sync_description">Synchronizuj dane między instalacjami</string>
+    <string name="settings_sync_preferences">Synchronizuj preferencje</string>
+    <string name="settings_sync_servers">Synchronizuj zewnętrzne serwery</string>
+    <string name="settings_sync_command_history">Synchronizuj historię poleceń</string>
+    <string name="settings_sync_hotbar">Synchronizuj zapisane paski szybkiego dostępu trybu kreatywnego</string>
+    <string name="settings_sync_saves">Synchronizuj światy</string>
+    <string name="settings_sync_config">Synchronizuj konfigurację modów (niezalecane)</string>
+    <string name="settings_sync_screenshots">Synchronizuj zrzuty ekranu</string>
+    <string name="settings_sync_resourcepacks">Synchronizuj paczki zasobów</string>
+    <string name="settings_sync_shaderpacks">Synchronizuj shadery</string>
+    <string name="settings_sync_flashback">Synchronizuj nagrania moda Flashback</string>
+    <string name="settings_sync_distant_horizons">Synchronizuj LOD-y moda Distant Horizons</string>
+    <string name="settings_sync_voxy">Synchronizuj LOD-y moda Voxy</string>
+    <string name="settings_sync_xareo">Synchronizuj pliki modów Xareo's Minimap i World map</string>
+    <string name="settings_sync_journeymap">Synchronizuj pliki moda Journeymap</string>
+    <string name="settings_sync_bobby">Synchronizuj chunki moda Bobby</string>
+    <string name="settings_sync_schmatic">Synchronizuj schematy</string>
+
+    <!-- Link section -->
+    <string name="settings_link_title">AnyMC Link</string>
+    <string name="settings_link_description">Graj i udostępniaj ze znajomymi</string>
+    <string name="settings_link_header">AnyMC Link</string>
+    <string name="settings_link_main_description">Graj i udostępniaj instalacje ze znajomymi korzystając z bezpiecznej sieci P2P za darmo.</string>
+    <string name="settings_link_main_button">Zacznij</string>
+
+    <!-- Screenshots tab -->
+    <string name="screenshots_empty">Nie znaleziono zrzutów ekranu</string>
+    <string name="screenshots_count">%1$s zrzutów ekranu</string>
+
+    <!-- Advanced Section -->
+    <string name="settings_adv_launch_behavior_title">Zachowanie launchera po uruchomieniu gry</string>
+    <string name="settings_adv_launch_minimize">Minimalizacja launchera</string>
+    <string name="settings_adv_launch_console">Otwieranie konsoli</string>
+    <string name="settings_adv_dev_mode_title">Tryb dewelopera</string>
+    <string name="settings_adv_dev_mode_desc">Dodaje dodatkowe opcje do launchera, przydatne głównie twórcom modyfikacji</string>
+    <string name="settings_adv_gpu_offload_title">Offloading GPU PRIME</string>
+    <string name="settings_adv_gpu_offload_desc">Ustawia offloading GPU z technologią PRIME. Zazwyczaj to ustawienie wykorzystuje się na laptopach z Linuxem z dedykowanym GPU.</string>
+    <string name="settings_adv_gpu_offload_nvidia">Nvidia</string>
+    <string name="settings_adv_gpu_offload_amd">AMD</string>
+    <string name="settings_adv_launch_behavior_change">Zmień</string>
+    <string name="settings_adv_controller_support_title">Wsparcie dla kontrolera</string>
+    <string name="settings_adv_controller_support_desc">Włącza eksperymentalną obsługę gamepadów oraz nawigację strzałkami. Może powodować problemy z touchpadami.</string>
+
+    <!-- Java Section -->
+    <string name="settings_java_ram_usage_title">Maksymalne użycie RAM-u</string>
+    <string name="settings_java_ram_usage_desc">Ile RAM-u może Minecraft użyć:\nZalecane:\n2048 dla urządzeń z &lt;8GB RAM\n4096 dla urządzeń z &lt;12GB\n8192 dla urządzeń &gt;12GB</string>
+
+    <!-- Welcome Screens -->
+    <string name="welcome_back">Wstecz</string>
+    <string name="welcome_done">Gotowe</string>
+    <string name="welcome_fs_sudo_needed">Musisz nadać uprawnienia sudo, aby launcher mógł stworzyć folder współdzielony (%1$s). Naciśnij przycisk poniżej, aby to zrobić.</string>
+    <string name="welcome_fs_create_dir">Stwórz folder</string>
+    <string name="welcome_fs_error">Nie udało się stworzyć folderu. Spróbuj ponownie.</string>
+
+    <!-- Installation Creation -->
+    <string name="versions_create_type_title">Wybierz typ instalacji</string>
+    <string name="versions_create_modpack">Paczka Modrinth</string>
+    <string name="versions_create_version_title">Wybierz wersję i nazwę instalacji</string>
+    <string name="versions_create_name_label">Nazwa instalacji:</string>
+    <string name="versions_create_name_placeholder">Instalacja Minecrafta</string>
+    <string name="versions_create_mc_version_label">Wersja Minecrafta:</string>
+    <string name="versions_create_show_snapshots">Pokaż snapshoty</string>
+    <string name="versions_create_loader_version_label">Wersja %1$s:</string>
+    <string name="versions_create_no_loaders">Brak dostępnych loaderów dla tej wersji</string>
+    <string name="versions_create_install_button">Instaluj</string>
+    <string name="versions_import_type">Importuj z ZIP</string>
+    <string name="versions_import_danger">Importowanie instalacji z pliku ZIP jest niebezpieczną funkcją, która może pozwolić niebezpiecznym plikom ZIP nadpisać istniejące pliki na twoim komputerze lub wykonać niebezpieczny kod poprzez pliki modów JAR. Bądź ostrożny i nie importuj instalacji, którym nie możesz całkowicie zaufać.</string>
+    <string name="versions_import_drag_drop">Przeciągnij i upuść ZIP AnyMC tutaj</string>
+    <string name="versions_import_select_file">Wybierz plik ZIP</string>
+
+    <!-- Modrinth -->
+    <string name="modrinth_title_list">Modrinth - %1$s (%2$s)</string>
+    <string name="modrinth_title_modpack">Wybierz paczkę Modrinth</string>
+    <string name="modrinth_search_placeholder">Szukaj projektów...</string>
+    <string name="modrinth_search_placeholder_modpacks">Szukaj paczek modyfikacji...</string>
+    <string name="modrinth_tab_description">Opis</string>
+    <string name="modrinth_tab_changelog">Dziennik zmian</string>
+    <string name="modrinth_tab_versions">Wersje</string>
+    <string name="modrinth_sidebar_compatibility">Kompatybilność</string>
+    <string name="modrinth_sidebar_platforms">Platformy</string>
+    <string name="modrinth_sidebar_environments">Wspierane środowiska</string>
+    <string name="modrinth_sidebar_links">Linki</string>
+    <string name="modrinth_sidebar_authors">Twórcy</string>
+    <string name="modrinth_sidebar_details">Szczegóły</string>
+    <string name="modrinth_tags">Tagi</string>
+    <string name="modrinth_content">Zawartość</string>
+    <string name="modrinth_env_client">Po stronie klienta</string>
+    <string name="modrinth_env_server">Po stronie serwera</string>
+    <string name="modrinth_env_required">Wymagane</string>
+    <string name="modrinth_env_optional">Opcjonalne</string>
+    <string name="modrinth_env_unsupported">Nieobsługiwane</string>
+    <string name="modrinth_link_source">Źródło</string>
+    <string name="modrinth_link_issues">Zgłoś problem</string>
+    <string name="modrinth_link_wiki">Wiki</string>
+    <string name="modrinth_link_discord">Discord</string>
+    <string name="modrinth_detail_license">Licencja: %1$s</string>
+    <string name="modrinth_detail_published">Opublikowano: %1$s</string>
+    <string name="modrinth_detail_updated">Zaktualizowano: %1$s</string>
+    <string name="modrinth_downloads">%1$s pobrań</string>
+    <string name="modrinth_followers">%1$s obserwujących</string>
+    <string name="modrinth_btn_download">Pobierz</string>
+    <string name="modrinth_btn_downloaded">Pobrano</string>
+    <string name="modrinth_btn_error">Błąd</string>
+    <string name="modrinth_btn_other_versions">Inne wersje</string>
+    <string name="modrinth_all_versions">Wszystkie wersje</string>
+    <string name="modrinth_no_description">Brak opisu.</string>
+    <string name="modrinth_no_changelog">Brak dziennika zmian.</string>
+    <string name="modrinth_dependencies">Wymagane mody</string>
+    <string name="modrinth_dependency_name">Nazwa</string>
+    <string name="modrinth_dependency_version">Wersja</string>
+    <string name="modrinth_dependency_any">Dowolna</string>
+    <string name="modrinth_install_version_title">Wybierz wersję paczki: %1$s</string>
+
+    <!-- Modrinth Categories -->
+    <string name="modrinth_cat_group_category">Kategoria</string>
+    <string name="modrinth_cat_group_features">Funkcje</string>
+    <string name="modrinth_cat_group_resolution">Rozdzielczość</string>
+    <string name="modrinth_cat_group_performance">Wydajność</string>
+    <string name="modrinth_cat_library">Biblioteki</string>
+    <string name="modrinth_cat_cursed">Cursed</string>
+    <string name="modrinth_cat_decoration">Dekoracje</string>
+    <string name="modrinth_cat_economy">Ekonomia</string>
+    <string name="modrinth_cat_world_gen">Generacja świata</string>
+    <string name="modrinth_cat_food">Jedzenie</string>
+    <string name="modrinth_cat_storage">Magazynowanie</string>
+    <string name="modrinth_cat_magic">Magiczne</string>
+    <string name="modrinth_cat_game_mechanics">Mechaniki gry</string>
+    <string name="modrinth_cat_minigame">Minigra</string>
+    <string name="modrinth_cat_mobs">Moby</string>
+    <string name="modrinth_cat_utility">Narzędzia</string>
+    <string name="modrinth_cat_optimization">Optymalizacja</string>
+    <string name="modrinth_cat_adventure">Przygoda</string>
+    <string name="modrinth_cat_social">Społeczne</string>
+    <string name="modrinth_cat_technology">Technologia</string>
+    <string name="modrinth_cat_transportation">Transport</string>
+    <string name="modrinth_cat_equipment">Wyposażenie</string>
+    <string name="modrinth_cat_management">Zarządzanie</string>
+    <string name="modrinth_cat_lightweight">Lekki</string>
+    <string name="modrinth_cat_multiplayer">Tryb wieloosobowy</string>
+    <string name="modrinth_cat_combat">Walka</string>
+    <string name="modrinth_cat_challenge">Wyzwanie</string>
+    <string name="modrinth_cat_quest">Zadania</string>
+    <string name="modrinth_cat_kitchen_sink">Zlew kuchenny</string>
+    <string name="modrinth_cat_modded">Dla modów</string>
+    <string name="modrinth_cat_tweaks">Drobne zmiany</string>
+    <string name="modrinth_cat_vanilla_like">Jak vanilla</string>
+    <string name="modrinth_cat_simple">Proste</string>
+    <string name="modrinth_cat_realistic">Realistyczne</string>
+    <string name="modrinth_cat_themed">Tematyczne</string>
+    <string name="modrinth_cat_blocks">Bloki</string>
+    <string name="modrinth_cat_entities">Byty</string>
+    <string name="modrinth_cat_core_shaders">Core shaders</string>
+    <string name="modrinth_cat_fonts">Czcionki</string>
+    <string name="modrinth_cat_audio">Dźwięk</string>
+    <string name="modrinth_cat_gui">Interfejs</string>
+    <string name="modrinth_cat_models">Modele</string>
+    <string name="modrinth_cat_items">Przedmioty</string>
+    <string name="modrinth_cat_environment">Środowisko</string>
+    <string name="modrinth_cat_translations">Tłumaczenia</string>
+    <string name="modrinth_cat_fantasy">Fantastyka</string>
+    <string name="modrinth_cat_cartoon">Kreskówkowe</string>
+    <string name="modrinth_cat_semi_realistic">Półrealistyczne</string>
+    <string name="modrinth_cat_atmosphere">Atmosfera</string>
+    <string name="modrinth_cat_bloom">Bloom</string>
+    <string name="modrinth_cat_shadows">Cienie</string>
+    <string name="modrinth_cat_lighting">Kolorowe oświetlenie</string>
+    <string name="modrinth_cat_leaves">Liście</string>
+    <string name="modrinth_cat_reflections">Odbicia</string>
+    <string name="modrinth_cat_pbr">PBR</string>
+    <string name="modrinth_cat_path_tracing">Śledzenie ścieżki</string>
+    <string name="modrinth_cat_low">Niskie</string>
+    <string name="modrinth_cat_medium">Średnie</string>
+    <string name="modrinth_cat_high">Wysokie</string>
+    <string name="modrinth_cat_16x">16x</string>
+    <string name="modrinth_cat_32x">32x</string>
+    <string name="modrinth_cat_64x">64x</string>
+    <string name="modrinth_cat_128x">128x</string>
+    <string name="modrinth_cat_256x">256x</string>
+    <string name="modrinth_cat_512x">512x+</string>
+    <string name="modrinth_cat_potato">Potato</string>
+    <string name="modrinth_cat_screenshot">Zrzut ekranu</string>
+
+    <!-- NBT Editor -->
+    <string name="nbt_title">Edytor NBT</string>
+    <string name="nbt_edit_value">Edytuj wartość: %1$s</string>
+    <string name="nbt_save">Zapisz</string>
+    <string name="nbt_cancel">Anuluj</string>
+
+    <!-- General -->
+    <string name="common_ok">OK</string>
+    <string name="common_next">Dalej</string>
+    <string name="common_yes">Tak</string>
+    <string name="common_no">Nie</string>
+    <string name="common_none">Brak</string>
+    <string name="common_error">Błąd: %1$s</string>
+    <string name="common_retry">Spróbuj ponownie</string>
+    <string name="common_loading">Ładowanie...</string>
+    <string name="common_back">Wróć</string>
+    <string name="common_close">Zamknij</string>
+    <string name="common_play">Graj</string>
+    <string name="common_delete">Usuń</string>
+    <string name="common_danger">NIEBEZPIECZEŃSTWO</string>
+    <string name="common_update">Aktualizuj (beta)</string>
+    <string name="common_more_info">Więcej informacji</string>
+    <string name="common_copy">Kopiuj</string>
+
+    <!-- Profile Screen -->
+    <string name="profile_title">Twój profil</string>
+    <string name="profile_change_account">Zmień konto</string>
+    <string name="profile_add_account">Dodaj konto</string>
+    <string name="profile_add_account_type_title">Wybierz typ konta</string>
+    <string name="profile_add_account_type_ms">Konto Microsoft</string>
+    <string name="profile_add_account_type_elyby">Konto Ely.by</string>
+    <string name="profile_add_account_type_offline">Konto offline</string>
+    <string name="profile_add_account_ms_status">Status autoryzacji: %1$s</string>
+    <string name="profile_add_account_ms_waiting">Oczekiwanie na okno autoryzacji...</string>
+    <string name="profile_add_account_ms_starting">Uruchamianie okna autoryzacji...</string>
+    <string name="profile_add_account_ms_logging_in">Logowanie...</string>
+    <string name="profile_add_account_ms_error_api">Błąd logowania (Minecraft API)</string>
+    <string name="profile_add_account_ms_error_window">Anulowano lub błąd okna autoryzacji</string>
+    <string name="profile_add_account_elyby_logging_in">Logowanie do Ely.by...</string>
+    <string name="profile_add_account_elyby_error">Błąd logowania. Sprawdź dane.</string>
+    <string name="profile_add_account_elyby_email">E-mail lub nazwa użytkownika:</string>
+    <string name="profile_add_account_elyby_password">Hasło:</string>
+    <string name="profile_add_account_offline_username">Nazwa użytkownika:</string>
+    <string name="profile_add_account_add_button">Dodaj konto</string>
+    <string name="profile_delete_account_title">Usuń konto</string>
+    <string name="profile_delete_account_confirm">Na pewno?</string>
+    <string name="profile_stats_title">Statystyki:</string>
+    <string name="profile_stats_total_playtime">Łączny czas gry</string>
+    <string name="profile_stats_longest_world">Świat, na którym grano najdłużej</string>
+    <string name="profile_stats_most_collected">Blok, którego zebrano najwięcej</string>
+    <string name="profile_stats_total_deaths">Łączna ilość śmierci</string>
+    <string name="profile_stats_total_distance">Łączna ilość przebytych bloków</string>
+    <string name="profile_stats_total_sessions">Łączna ilość sesji</string>
+    <string name="profile_stats_crouch_distance">Łączny dystans przebyty skradając się</string>
+    <string name="profile_stats_sprint_distance">Łączny dystans przebyty biegnąc</string>
+    <string name="profile_stats_info">Info: Te dane poza czasem gry są zliczanie tylko z światów jednoosobowych.</string>
+    <string name="profile_stats_time_format_hm">%1$s godz. %2$s min</string>
+    <string name="profile_stats_time_format_h">%1$s godz.</string>
+    <string name="profile_stats_time_format_m">%1$s min</string>
+    <string name="profile_stats_time_format_s">%1$s sek.</string>
+
+    <!-- Versions Screen -->
+    <string name="versions_title">Wersje</string>
+    <string name="versions_new_installation">Nowa instalacja</string>
+    <string name="versions_page_worlds">Światy</string>
+    <string name="versions_page_mods">Mody</string>
+    <string name="versions_page_shaders">Shadery</string>
+    <string name="versions_page_resourcepacks">Paczki zasobów</string>
+    <string name="versions_page_stats">Statystyki</string>
+    <string name="versions_empty_worlds">Brak światów</string>
+    <string name="versions_add_zip">Dodaj z ZIP</string>
+    <string name="versions_delete_confirm">Czy na pewno chcesz usunąć %1$s?</string>
+    <string name="versions_rename_title">Zmień nazwę instalacji</string>
+    <string name="versions_settings_title">Ustawienia instalacji</string>
+    <string name="versions_stats_empty">Brak statystyk dla tego konta w tej instalacji.</string>
+    <string name="versions_mod_downloading">Pobieranie:</string>
+    <string name="versions_mod_status_queued">Oczekuje</string>
+    <string name="versions_mod_status_completed">Gotowe</string>
+    <string name="versions_mod_status_failed">Błąd</string>
+    <string name="versions_mod_clear_completed">Wyczyść zakończone</string>
+    <string name="versions_add_element_title">Dodaj %1$s z...</string>
+    <string name="versions_add_from_file">pliku</string>
+    <string name="versions_mods_empty">Nie znaleziono modów</string>
+    <string name="versions_resourcepacks_empty">Nie znaleziono paczek zasobów</string>
+    <string name="versions_shaders_empty">Nie znaleziono shaderów</string>
+
+    <string name="versions_dialog_rename_title">Zmień nazwę</string>
+    <string name="versions_dialog_rename_label">Nowa nazwa:</string>
+    <string name="versions_dialog_settings_java_label">Wersja Java:</string>
+    <string name="versions_dialog_settings_java_loading">Ładowanie wersji Java...</string>
+    <string name="versions_dialog_settings_java_loading_desc">Pobieranie manifestu Mojang...</string>
+    <string name="versions_dialog_settings_java_default">Domyślna (z manifestu Mojang)</string>
+    <string name="versions_dialog_settings_java_rec">Zalecana wersja dla tej edycji Minecrafta</string>
+    <string name="versions_dialog_settings_jvm_args_label">Dodatkowe argumenty JVM:</string>
+    <string name="versions_dialog_settings_jvm_args_placeholder">Dodaj argument JVM...</string>
+    <string name="versions_dialog_settings_remove_args_label">Argumenty do usunięcia (np. --quickPlayPath):</string>
+    <string name="versions_dialog_settings_remove_args_placeholder">Argument do usunięcia...</string>
+    <string name="versions_dialog_settings_demo_error">Nie można usunąć argumentu --demo ze względów bezpieczeństwa.</string>
+    <string name="versions_menu_delete">Usuń instalację</string>
+    <string name="versions_menu_rename">Zmień nazwę</string>
+    <string name="versions_menu_open_folder">Otwórz folder instalacji</string>
+    <string name="versions_menu_settings">Ustawienia</string>
+    <string name="versions_menu_nbt">Edytor NBT</string>
+    <string name="versions_menu_export">Eksportuj instalację</string>
+    <string name="versions_world_gamemode_label">Tryb gry: %1$s</string>
+    <string name="versions_world_last_played_label">Ostatnio grano: %1$s</string>
+    <string name="versions_world_play_time_label">Czas gry: %1$s</string>
+    <string name="versions_world_deaths_label">Śmierci: %1$s</string>
+    <string name="versions_world_id_label">ID świata: %1$s</string>
+    <string name="versions_error_empty_name">Nazwa instalacji nie może być pusta</string>
+    <string name="versions_error_deletion_failed">Usuwanie nie powiodło się</string>
+    <string name="versions_error_deletion_failed_desc">Nie udało się usunąć instalacji</string>
+    <string name="versions_dev_resource_menu">Menu odłączania zasobów</string>
+    <string name="mods_count">%1$s modów\nMożesz przeciągnąć i upuścić, aby dodać mody</string>
+    <string name="shaders_count">%1$s shaderów\nMożesz przeciągnąć i upuścić, aby dodać shadery</string>
+    <string name="resourcepacks_count">%1$s paczek zasobów\nMożesz przeciągnąć i upuścić, aby dodać paczki zasobów</string>
+    <string name="mods_add_from_file">Dodaj z pliku</string>
+    <string name="mods_add_from_modrinth">Dodaj z Modrinth</string>
+    <string name="mods_update_available">Dostępna aktualizacja</string>
+    <string name="mods_loader_update_available">Dostępna aktualizacja loadera modów: %1$s</string>
+    <string name="versions_menu_restore_backup">Przywróć kopię zapasową modów</string>
+    <string name="mods_update_restore_tip">Wskazówka: Jeśli aktualizacja powoduje problemy, możesz przywrócić poprzednie mody przez menu instalacji.</string>
+    <string name="mods_updating_status">Aktualizowanie instalacji...</string>
+    <string name="mods_update_warnings_title">Ostrzeżenia aktualizacji</string>
+    <string name="mods_update_warnings_desc">Wykryto następujące potencjalne problemy z kompatybilnością:</string>
+    <string name="mods_update_proceed">Aktualizuj mimo to</string>
+    <string name="common_cancel">Anuluj</string>
+    <string name="worlds_select_installation">Wybierz instalację, aby zobaczyć światy</string>
+    <string name="worlds_count">%1$s światów</string>
+    <string name="versions_gamemode_survival">Przetrwanie</string>
+    <string name="versions_gamemode_creative">Kreatywny</string>
+    <string name="versions_gamemode_adventure">Przygodowy</string>
+    <string name="versions_gamemode_spectator">Widz</string>
+    <string name="versions_gamemode_unknown">Nieznany</string>
+
+    <!-- Stat Categories -->
+    <string name="stat_cat_mined">Wydobyte bloki</string>
+    <string name="stat_cat_used">Użyte przedmioty</string>
+    <string name="stat_cat_broken">Zniszczone przedmioty</string>
+    <string name="stat_cat_crafted">Wytworzone przedmioty</string>
+    <string name="stat_cat_dropped">Wyrzucone przedmioty</string>
+    <string name="stat_cat_picked_up">Podniesione przedmioty</string>
+    <string name="stat_cat_killed">Zabite stworzenia</string>
+    <string name="stat_cat_killed_by">Zabity przez</string>
+    <string name="stat_cat_custom">Inne statystyki</string>
+    <string name="stat_value_hp">%1$s HP</string>
+    <string name="stat_value_km">%1$s km</string>
+    <string name="stat_value_m">%1$s m</string>
+
+    <!-- Link Setup Screen -->
+    <string name="link_setup_downloading_components">Pobieranie wymaganych komponentów...</string>
+
+    <!-- Installer -->
+    <string name="installer_title">AnyMC Launcher - Instalator</string>
+    <string name="installer_header_title">Instalacja AnyMC Launcher</string>
+    <string name="installer_step_welcome_title">Witamy w instalatorze AnyMC Launcher</string>
+    <string name="installer_step_welcome_desc">Ten kreator przeprowadzi Cię przez proces instalacji aplikacji AnyMC Launcher. Wybierz wersję wydań, którą chcesz zainstalować.</string>
+    <string name="installer_step_location_title">Wybór katalogu instalacji</string>
+    <string name="installer_step_location_desc">Wskierz folder docelowy, w którym zostaną zainstalowane pliki aplikacji AnyMC Launcher.</string>
+    <string name="installer_step_options_title">Integracja z systemem i skróty</string>
+    <string name="installer_step_options_desc">Skonfiguruj skróty na pulpicie</string>
+    <string name="installer_step_indicator">Krok %1$d z %2$d</string>
+    <string name="installer_btn_next">Dalej</string>
+    <string name="installer_btn_back">Wstecz</string>
+    <string name="installer_select_version">Wybierz wersję AnyMC:</string>
+    <string name="installer_install_from_zip">Zainstaluj z pliku .zip</string>
+    <string name="installer_selected_zip_file">Wybrany plik lokalny: %1$s</string>
+    <string name="installer_use_github_releases">Użyj wydań z GitHub</string>
+    <string name="installer_select_zip_dialog_title">Wybierz archiwum AnyMC (.zip)</string>
+    <string name="installer_no_releases">Brak dostępnych wydań</string>
+    <string name="installer_install_dir">Katalog instalacji:</string>
+    <string name="installer_browse">Przeglądaj...</string>
+    <string name="installer_browse_dialog_title">Wybierz katalog instalacji AnyMC</string>
+    <string name="installer_system_options">Opcje systemowe:</string>
+    <string name="installer_shortcut_desktop">Utwórz skrót na pulpicie</string>
+    <string name="installer_shortcut_start_menu">Zarejestruj aplikację w menu systemowym (Start Menu / Desktop App Registry)</string>
+    <string name="installer_uri_scheme">Zarejestruj protokół URI (%1$s://)</string>
+    <string name="installer_uri_scheme_name">Nazwa protokołu:</string>
+    <string name="installer_fetching_releases">Pobieranie listy wydań z GitHub...</string>
+    <string name="installer_status_downloading">Pobieranie %1$s (%.1f MB / %.1f MB)</string>
+    <string name="installer_status_downloading_simple">Pobieranie %1$s...</string>
+    <string name="installer_status_extracting">Rozpakowywanie pliku %1$s...</string>
+    <string name="installer_status_registering_system">Rejestrowanie skrótów i aplikacji w systemie...</string>
+    <string name="installer_status_registering_uri">Rejestrowanie protokołu URL...</string>
+    <string name="installer_status_preparing">Przygotowywanie instalacji...</string>
+    <string name="installer_success_title">Instalacja zakończona sukcesem!</string>
+    <string name="installer_success_message">Aplikacja AnyMC została zainstalowana w katalogu:\n%1$s</string>
+    <string name="installer_launch_app">Uruchom AnyMC Launcher</string>
+    <string name="installer_close">Zamknij instalator</string>
+    <string name="installer_error_title">Wystąpił błąd podczas instalacji:</string>
+    <string name="installer_error_no_release">Brak wybranego wydania (release) do zainstalowania.</string>
+    <string name="installer_error_no_asset">Nie znaleziono pliku instalacyjnego dopasowanego do Twojego systemu operacyjnego (%1$s).</string>
+    <string name="installer_error_generic">Wystąpił nieoczekiwany błąd podczas instalacji.</string>
+    <string name="installer_retry">Spróbuj ponownie</string>
+    <string name="installer_cancel">Anuluj</string>
+    <string name="installer_install_button">Zainstaluj</string>
+    <string name="installer_installing_button">Instalowanie...</string>
+
+    <!-- Settings Uninstall -->
+    <string name="settings_uninstall_title">Odinstaluj AnyMC Launcher</string>
+    <string name="settings_uninstall_desc">Usuń skróty AnyMC Launcher, wpisy z rejestru systemowego oraz pliki programu.</string>
+    <string name="settings_uninstall_dialog_title">Odinstalować AnyMC Launcher?</string>
+    <string name="settings_uninstall_dialog_desc">Ta operacja usunie skróty i wpisy AnyMC z rejestru systemowego oraz pliki aplikacji.</string>
+    <string name="settings_uninstall_delete_data">Usuń również pliki konfiguracji i profile użytkownika</string>
+    <string name="settings_uninstall_delete_storage">Usuń również pliki gry i magazynu danych</string>
+    <string name="settings_uninstall_confirm_btn">Odinstaluj AnyMC</string>
+
+    <!-- EULA and Texture Download -->
+    <string name="eula_title">UMOWA LICENCYJNA UŻYTKOWNIKA KOŃCOWEGO MINECRAFT (EULA)</string>
+    <string name="eula_description">Aby używać AnyMC Launcher i legalnie pobierać zasoby oraz tekstury gry Minecraft z oficjalnych serwerów Mojang, musisz przeczytać i zaakceptować Umowę Licencyjną Użytkownika Końcowego (EULA) oraz Warunki Korzystania z Usług firmy Mojang.\n\nKlikając „Zgadzam się”, potwierdzasz, że AnyMC jest niezależnym launcherem pomocniczym, nie jest powiązany z Mojang ani Microsoft, a pobieranie zasobów jest zgodne z oficjalnymi wytycznymi dotyczącymi redystrybucji Minecrafta.</string>
+    <string name="eula_declined_title">ODRZUCONO EULA</string>
+    <string name="eula_declined_desc">Odrzuciłeś umowę EULA Minecrafta. AnyMC Launcher nie może działać ani pobierać niezbędnych zasobów bez akceptacji EULA.\n\nAplikacja zostanie teraz zamknięta.</string>
+    <string name="eula_decline_button">ODRZUĆ</string>
+    <string name="eula_agree_button">ZGADZAM SIĘ</string>
+    <string name="eula_exit_button">ZAMKNIJ APLIKACJĘ</string>
+    <string name="eula_read_web_button">PRZECZYTAJ OFICJALNE EULA MINECRAFT</string>
+    <string name="texture_download_message">Pobieranie oficjalnych tekstur Minecrafta\nz serwerów Mojang...</string>
+</resources>
