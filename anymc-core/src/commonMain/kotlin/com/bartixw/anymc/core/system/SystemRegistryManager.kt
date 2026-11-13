@@ -181,6 +181,20 @@ object SystemRegistryManager {
 
     // --- Windows Implementation ---
 
+    private fun getWindowsSpecialFolder(folderName: String): File? {
+        return try {
+            val script = "\$WshShell = New-Object -ComObject WScript.Shell; Write-Output \$WshShell.SpecialFolders('$folderName')"
+            val process = ProcessBuilder("powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-Command", script)
+                .redirectErrorStream(true)
+                .start()
+            val output = process.inputStream.bufferedReader().readText().trim()
+            process.waitFor()
+            if (output.isNotBlank()) File(output) else null
+        } catch (_: Exception) {
+            null
+        }
+    }
+
     private fun registerWindows(
         appName: String,
         version: String,
@@ -209,9 +223,16 @@ object SystemRegistryManager {
         runCommand("reg", "add", regKey, "/v", "NoModify", "/t", "REG_DWORD", "/d", "1", "/f")
         runCommand("reg", "add", regKey, "/v", "NoRepair", "/t", "REG_DWORD", "/d", "1", "/f")
 
+        val resolveWindowsFolder = { folderType: String, fallbackPath: String ->
+            val file = File(fallbackPath)
+            if (file.exists()) file else {
+                getWindowsSpecialFolder(folderType) ?: file
+            }
+        }
+
         // 2. Start Menu Shortcut
         if (createStartMenuShortcut) {
-            val startMenuDir = File(userHome, "AppData/Roaming/Microsoft/Windows/Start Menu/Programs")
+            val startMenuDir = resolveWindowsFolder("Programs", "$userHome/AppData/Roaming/Microsoft/Windows/Start Menu/Programs")
             startMenuDir.mkdirs()
             val shortcutFile = File(startMenuDir, "$appName.lnk")
             createWindowsShortcut(shortcutFile.absolutePath, exePath, installDir, iconPath)
@@ -219,11 +240,10 @@ object SystemRegistryManager {
 
         // 3. Desktop Shortcut
         if (createDesktopShortcut) {
-            val desktopDir = File(userHome, "Desktop")
-            if (desktopDir.exists()) {
-                val shortcutFile = File(desktopDir, "$appName.lnk")
-                createWindowsShortcut(shortcutFile.absolutePath, exePath, installDir, iconPath)
-            }
+            val desktopDir = resolveWindowsFolder("Desktop", "$userHome/Desktop")
+            desktopDir.mkdirs()
+            val shortcutFile = File(desktopDir, "$appName.lnk")
+            createWindowsShortcut(shortcutFile.absolutePath, exePath, installDir, iconPath)
         }
 
         return true
@@ -237,22 +257,34 @@ object SystemRegistryManager {
         runCommand("reg", "delete", regUninstallKey, "/f")
         runCommand("reg", "delete", regSchemeKey, "/f")
 
-        val startMenuShortcut = File(userHome, "AppData/Roaming/Microsoft/Windows/Start Menu/Programs/$appName.lnk")
+        val resolveWindowsFolder = { folderType: String, fallbackPath: String ->
+            val file = File(fallbackPath)
+            if (file.exists()) file else {
+                getWindowsSpecialFolder(folderType) ?: file
+            }
+        }
+
+        val startMenuDir = resolveWindowsFolder("Programs", "$userHome/AppData/Roaming/Microsoft/Windows/Start Menu/Programs")
+        val startMenuShortcut = File(startMenuDir, "$appName.lnk")
         if (startMenuShortcut.exists()) startMenuShortcut.delete()
 
-        val desktopShortcut = File(userHome, "Desktop/$appName.lnk")
+        val desktopDir = resolveWindowsFolder("Desktop", "$userHome/Desktop")
+        val desktopShortcut = File(desktopDir, "$appName.lnk")
         if (desktopShortcut.exists()) desktopShortcut.delete()
 
         return true
     }
 
     private fun createWindowsShortcut(shortcutPath: String, targetPath: String, workingDir: String, iconPath: String) {
+        val cleanIconLocation = if (iconPath.endsWith(",0")) iconPath.removeSuffix(",0") else iconPath
+        val escapePs = { s: String -> s.replace("'", "''") }
+
         val psScript = """
             ${'$'}WshShell = New-Object -ComObject WScript.Shell
-            ${'$'}Shortcut = ${'$'}WshShell.CreateShortcut('$shortcutPath')
-            ${'$'}Shortcut.TargetPath = '$targetPath'
-            ${'$'}Shortcut.WorkingDirectory = '$workingDir'
-            ${'$'}Shortcut.IconLocation = '$iconPath,0'
+            ${'$'}Shortcut = ${'$'}WshShell.CreateShortcut('${escapePs(shortcutPath)}')
+            ${'$'}Shortcut.TargetPath = '${escapePs(targetPath)}'
+            ${'$'}Shortcut.WorkingDirectory = '${escapePs(workingDir)}'
+            ${'$'}Shortcut.IconLocation = '${escapePs(cleanIconLocation)}'
             ${'$'}Shortcut.Save()
         """.trimIndent()
 

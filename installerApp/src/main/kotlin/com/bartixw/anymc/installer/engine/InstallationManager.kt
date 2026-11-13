@@ -90,27 +90,31 @@ class InstallationManager(
             val installDir = config.installDirectory
             installDir.mkdirs()
 
-            unpackOrCopy(sourceFile, installDir)
+            val extractedExe = unpackOrCopy(sourceFile, installDir)
 
-            val executableFile =
-                if (PlatformUtils.getCurrentOS() == "windows")
-                    installDir.resolve("AnyMC Launcher.exe")
-                else installDir.resolve("bin").resolve("AnyMC Launcher")
+            val executableFile = if (extractedExe.exists()) {
+                extractedExe
+            } else if (PlatformUtils.getCurrentOS() == "windows") {
+                installDir.resolve("AnyMC Launcher.exe")
+            } else {
+                installDir.resolve("bin").resolve("AnyMC Launcher")
+            }
 
-                // 3. System App Registration
+            // 3. System App Registration
             if (config.createDesktopShortcut || config.createStartMenuShortcut) {
                 _state.value = InstallationState.RegisteringSystem
+                val iconFile = if (PlatformUtils.getCurrentOS() == "linux") {
+                    installDir.resolve("lib").resolve("AnyMC Launcher.png")
+                } else {
+                    executableFile
+                }
                 SystemRegistryManager.registerApplicationInSystem(
                     appName = "AnyMC Launcher",
                     version = releaseVersion,
                     executableFile = executableFile,
                     createDesktopShortcut = config.createDesktopShortcut,
                     createStartMenuShortcut = config.createStartMenuShortcut,
-                    iconFile =
-                        if (PlatformUtils.getCurrentOS() == "linux")
-                            installDir.resolve("lib").resolve("AnyMC Launcher.png")
-                        else
-                            installDir.resolve("AnyMC Launcher.exe,0")
+                    iconFile = iconFile
                 )
             }
 
@@ -265,15 +269,15 @@ class InstallationManager(
 
     private fun findExecutableInDirectory(dir: File): File {
         val os = PlatformUtils.getCurrentOS()
-        val expectedExeName = when (os) {
-            "windows" -> "AnyMC.exe"
-            "osx" -> "AnyMC"
-            else -> "AnyMC"
+        val expectedExeNames = when (os) {
+            "windows" -> listOf("AnyMC Launcher.exe", "AnyMC.exe")
+            "osx" -> listOf("AnyMC Launcher", "AnyMC")
+            else -> listOf("AnyMC Launcher", "AnyMC")
         }
 
         // Search recursively for AnyMC executable or any .exe/.jar/script
         val found = dir.walkTopDown().firstOrNull { file ->
-            file.isFile && (file.name.equals(expectedExeName, ignoreCase = true) || file.name.equals("AnyMC.jar", ignoreCase = true))
+            file.isFile && (expectedExeNames.any { file.name.equals(it, ignoreCase = true) } || file.name.equals("AnyMC.jar", ignoreCase = true))
         }
 
         if (found != null) return found
@@ -283,7 +287,7 @@ class InstallationManager(
             file.isFile && (file.name.endsWith(".exe") || file.name.endsWith(".jar") || file.canExecute())
         }
 
-        return anyExe ?: File(dir, expectedExeName)
+        return anyExe ?: File(dir, expectedExeNames.first())
     }
 
     fun close() {
