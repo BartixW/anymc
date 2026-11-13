@@ -250,7 +250,7 @@ fun NewInstallationDialog(
     var name by remember { mutableStateOf("") }
     var importZipFile by remember { mutableStateOf<File?>(null) }
     
-    val versionsViewModel: VersionsViewModel = viewModel()
+    val versionsViewModel: VersionsViewModel = viewModel { VersionsViewModel() }
     val scope = rememberCoroutineScope()
 
     val viewModel: VersionsCreateChooseVersionViewModel = viewModel(key = installationType.toString()) {
